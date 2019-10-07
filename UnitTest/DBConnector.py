@@ -32,12 +32,8 @@ json_dir_data1 = {'jsonrpc': '2.0',
 
 
 def mssql_insert_json(json_dir, table_name):
-    item_fields = {
-        'clock': [],
-        'itemid': [],
-        'value_avg': []
-    }
     json_length = len(json_dir['result'])
+    params = ''
     for i in range(0, json_length):
         item_fields = {key: ''.join(values) for key, values in json_dir['result'][i].items()}
         params = (
@@ -47,6 +43,7 @@ def mssql_insert_json(json_dir, table_name):
         )
     sql = f"INSERT INTO {table_name} (UTCTime, Itemid, Value) VALUES (?, ?, ?)"
     cursor.execute(sql, params)
+
 
 if __name__ == '__main__':
     conn = pyodbc.connect(f'Driver={sql_server};SERVER={config.mssql_server};DATABASE={config.db_name}')

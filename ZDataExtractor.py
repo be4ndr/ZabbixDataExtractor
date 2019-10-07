@@ -50,16 +50,12 @@ def zabbix_request(search_name, hostid):
         mssql_insert_json(json_trend, table_name)
 
 
-def main():
+if __name__ == '__main__':
     zapi.session.verify = config.zbx_api_verify
     zapi.login(config.zbx_user, config.zbx_password)
     for h in zapi.host.get(output="extend"):
         for i in config.items:
             zabbix_request(i, h['hostid'])
     zapi.user.logout()
-
-
-if __name__ == '__main__':
-    main()
     print("----------------------")
     print("Job done successfully!")
