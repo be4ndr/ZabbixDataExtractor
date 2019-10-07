@@ -1,6 +1,6 @@
 import time
 
-mssql_server = 'MySQLServer'
+mssql_server = 'MSSQLServer'
 db_name = 'DB1'
 trusted_connection = 'Trusted_Connection=yes;'
 mssql_user = 'sqluser'
