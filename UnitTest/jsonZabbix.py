@@ -1,3 +1,5 @@
+import json
+
 from pyzabbix import ZabbixAPI
 
 import config
@@ -33,13 +35,13 @@ def zabbix_request(search_name, hostid):
                                          'time_till': config.time_to
                                      }
                                      )
-        # print("Host: " + hostid)
-        # print("Item: " + item_name)
-        # print(json.dumps(json_trend, indent=4, sort_keys=True))
-        # print(json_trend)
-        return json_trend
-        zapi.user.logout()
+        print("Host: " + hostid)
+        print("Item: " + item_name)
+        print(json.dumps(json_trend, indent=4, sort_keys=True))
+        print(json_trend)
+        # return json_trend
 
 
 if __name__ == '__main__':
     zabbix_request('Available memory in percentage', '10272')
+    zapi.user.logout()
